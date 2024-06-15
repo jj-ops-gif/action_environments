@@ -47,7 +47,7 @@ jobs:
       run: |
         aws cloudformation describe-stacks \
           --stack-name udatest \
-          --query 'Stacks[0].Outputs[?OutputKey==`BucketWebsiteURL`].OutputValue' \
+          --query 'Stacks[0].Outputs[?OutputKey==`WebsiteURL`].OutputValue' \
           --output text
 
 

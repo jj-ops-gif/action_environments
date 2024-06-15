@@ -46,7 +46,7 @@ jobs:
     - name: Show S3 bucket website URL
       run: |
         aws cloudformation describe-stacks \
-          --stack-name uda-artifact \
+          --stack-name udatest \
           --query 'Stacks[0].Outputs[?OutputKey==`ArtifactBucketWebsiteURL`].OutputValue' \
           --output text
 

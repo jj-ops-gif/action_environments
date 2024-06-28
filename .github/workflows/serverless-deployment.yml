@@ -1,9 +1,10 @@
 name: Deploy to AWS Lambda
 
 on:
-  push:
-    branches:
-      - release/*
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - release/*
 
 env:
   RELEASE_NAME: ${GITHUB_REF##*release/}

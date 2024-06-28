@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Create an S3 bucket
+Resources:
+  CodeDeployApplication:
+    Type: 'AWS::CodeDeploy::Application'
+    Properties: 
+      ApplicationName: MyApplication
+      ComputePlatform: EC2
+
+  CodeDeployDeploymentGroup:
+    Type: 'AWS::CodeDeploy::DeploymentGroup'
+    Properties:
+      ApplicationName: 
+        Ref: CodeDeployApplication
+      DeploymentGroupName: MyDeploymentGroup
+      DeploymentConfigName: CodeDeployDefault.OneAtATime
+      ServiceRoleArn: arn:aws:iam::123456789012:role/CodeDeployServiceRole
+      Ec2TagFilters:
+       - Key: Name
+         Value: MyEC2Instance
+         Type: KEY_AND_VALUE
+
+Outputs:
+  ApplicationName:
+    Description: 'Name of the CodeDeploy application'
+    Value: !Ref CodeDeployApplication
+    Export:
+      Name: ApplicationName-Export
+
+  DeploymentGroupName:
+    Description: 'Name of the CodeDeploy deployment group'
+    Value: !Ref CodeDeployDeploymentGroup
+    Export:
+      Name: DeploymentGroupName-Export
+  
